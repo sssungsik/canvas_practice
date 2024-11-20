@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body onload="draw()">
+<canvas id="tutorial" width="150" height="150"></canvas>
+<script>
+    var canvas = document.getElementById("tutorial");
+
+    if (canvas.getContext) {
+        var ctx = canvas.getContext("2d"); // 랜더링
+
+    } else {
+        // canvas-unsupported code here
+    }
+</script>
+
+
+<canvas id="test1" width="150" height="150"></canvas>
+<script>
+    function draw() {
+        const test1 = document.getElementById("test1");
+        if (test1.getContext) {
+            const ts1 = test1.getContext("2d");
+            ts1.fillStyle = "red";
+            ts1.fillRect(10, 10, 50, 50);
+
+            ts1.fillStyle = "blue";
+            ts1.fillRect(30, 30, 50, 50);
+
+            ts1.fillStyle = "green";
+            ts1.fillRect(50, 50, 50, 50);
+
+            ts1.fillStyle = "yellow";
+            ts1.fillRect(70, 70, 50, 50);
+
+            ts1.fillStyle = "white";
+            ts1.fillRect(90, 90, 50, 50);
+        } else {
+            alert('지원하지 않음')
+        }
+    }
+</script>
+</body>
+
+</html>
