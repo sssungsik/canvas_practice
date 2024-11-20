@@ -7,47 +7,121 @@
         canvas {
             border: 2px solid black;
         }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .container div {
+            margin: 10px;
+        }
     </style>
 </head>
 <body onload="draw()">
-<canvas id="tutorial" width="150" height="150"></canvas>
-<script>
-    var canvas = document.getElementById("tutorial");
+<div class="container">
+    <div>
+        <p>1. 기본 틀 </p>
+        <canvas id="tutorial" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>2. fillStyle과 fillRect</p>
+        <canvas id="test1" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>3. clearRect와 strokeRect</p>
+        <canvas id="test2" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>4. beginPath, moveTO, lineTo</p>
+        <canvas id="test3" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>5. arc</p>
+        <canvas id="test4" width="150" height="150"></canvas>
+    </div>
+    <script>
+        function draw() {
+            const test1 = document.getElementById("test1");
+            if (test1.getContext) {
+                const ts1 = test1.getContext("2d");
+                ts1.fillStyle = "red";
+                ts1.fillRect(10, 10, 50, 50);
 
-    if (canvas.getContext) {
-        var ctx = canvas.getContext("2d"); // 랜더링
+                ts1.fillStyle = "blue";
+                ts1.fillRect(30, 30, 50, 50);
 
-    } else {
-        // canvas-unsupported code here
-    }
-</script>
+                ts1.fillStyle = "green";
+                ts1.fillRect(50, 50, 50, 50);
+
+                ts1.fillStyle = "yellow";
+                ts1.fillRect(70, 70, 50, 50);
+
+                ts1.fillStyle = "white";
+                ts1.fillRect(90, 90, 50, 50);
+            } else {
+                alert('지원하지 않음')
+            }
+
+            const test2 = document.getElementById("test2");
+            if (test2.getContext) {
+                const ctx = test2.getContext("2d");
+                ctx.fillStyle = "black";
+                ctx.strokeRect(10, 10, 50, 50); // 윤곽선
+
+                ctx.fillStyle = "orange";
+                ctx.fillRect(30, 30, 50, 50);
+                ctx.clearRect(30, 30, 20, 20); // 특정 부분 지우기
+
+                ctx.fillStyle = "black";
+                ctx.fillRect(50, 50, 50, 50);
+                ctx.clearRect(50, 50, 30, 30);
+                ctx.strokeRect(50, 50, 40, 40);
+            } else {
+                alert('지원하지 않음');
+            }
+
+            const test3 = document.getElementById("test3");
+            if (test3.getContext) {
+                const ctx = test3.getContext("2d");
+
+                ctx.beginPath();
+                ctx.arc(75, 75, 50, 0, Math.PI * 2, true); // 호,원 그리기
+                ctx.moveTo(110, 75);
+                ctx.arc(75, 75, 35, 0, Math.PI, false); // 입
+                ctx.moveTo(65, 65);
+                ctx.arc(60, 65, 5, 0, Math.PI * 2, true); // 왼 눈
+                ctx.moveTo(95, 65);
+                ctx.arc(90, 65, 5, 0, Math.PI * 2, true); // 오른 눈
+                ctx.stroke();
+
+                ctx.fillStyle = "red";  // 모자
+                ctx.beginPath(); // 경로 생성
+                ctx.moveTo(25, 50); // 펜 이동
+                ctx.lineTo(125, 50); // 선 그리기
+                ctx.lineTo(75, 10);
+                ctx.fill(); // 채우기
 
 
-<canvas id="test1" width="150" height="150"></canvas>
-<script>
-    function draw() {
-        const test1 = document.getElementById("test1");
-        if (test1.getContext) {
-            const ts1 = test1.getContext("2d");
-            ts1.fillStyle = "red";
-            ts1.fillRect(10, 10, 50, 50);
+            } else {
+                alert('지원하지 않음');
+            }
 
-            ts1.fillStyle = "blue";
-            ts1.fillRect(30, 30, 50, 50);
+            const test4 = document.getElementById("test4");
+            if (test4.getContext) {
+                const ctx = test4.getContext("2d");
+                ctx.fillStyle = "orange";
+                ctx.strokeStyle = "black";
+                ctx.arc(75,75,45,0,2 * Math.PI);
+                ctx.fill(); // 채우기
+                ctx.stroke();
+            } else {
+                alert('지원하지 않음');
+            }
 
-            ts1.fillStyle = "green";
-            ts1.fillRect(50, 50, 50, 50);
-
-            ts1.fillStyle = "yellow";
-            ts1.fillRect(70, 70, 50, 50);
-
-            ts1.fillStyle = "white";
-            ts1.fillRect(90, 90, 50, 50);
-        } else {
-            alert('지원하지 않음')
         }
-    }
-</script>
+    </script>
+</div>
 </body>
 
 </html>
