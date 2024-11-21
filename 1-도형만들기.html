@@ -40,6 +40,14 @@
         <p>5. arc</p>
         <canvas id="test4" width="150" height="150"></canvas>
     </div>
+    <div>
+        <p>6. rect</p>
+        <canvas id="test5" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>7. Path2D</p>
+        <canvas id="test6" width="150" height="150"></canvas>
+    </div>
     <script>
         function draw() {
             const test1 = document.getElementById("test1");
@@ -118,7 +126,34 @@
             } else {
                 alert('지원하지 않음');
             }
+            const test5 = document.getElementById("test5");
+            if (test5.getContext) {
+                const ctx = test5.getContext("2d");
+                ctx.rect(10,65,130,25);
+                ctx.fill();
+                ctx.strokeStyle = "pink";
+                ctx.lineWidth = "5";
+                ctx.stroke();
+            } else {
+                alert('지원하지 않음');
+            }
+            const test6 = document.getElementById("test6");
+            if (test6.getContext) {
+                const ctx = test6.getContext("2d");
 
+                const rec = new Path2D(); // 사각형 Path2D
+                rec.rect(10,10,50,50);
+
+                const cir = new Path2D();
+                cir.moveTo(125,35);
+                cir.arc(100,35,25,0,2*Math.PI);
+
+                ctx.fillStyle = "GreenYellow";
+                ctx.strokeStyle = "Hotpink";
+                ctx.fill(cir);
+                ctx.stroke(rec);
+
+            }
         }
     </script>
 </div>

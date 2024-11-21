@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border: 2px solid black;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .container div {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body onload="draw()">
+<div class="container">
+    <div>
+        <p>1. fillStyle </p>
+        <canvas id="test1" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>2. strokeStyle </p>
+        <canvas id="test2" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>3. globalAlpha </p>
+        <canvas id="test3" width="150" height="150"></canvas>
+    </div>
+
+    <script>
+        function draw() {
+            let ctx = document.getElementById("test1").getContext("2d");
+            for(let i = 0; i<6; i++) {
+                for(let j=0; j<6; j++) {    // 6x6 사각형 생성
+                    ctx.fillStyle =
+                        "rgb(" +
+                        Math.floor(255 - 32.5 * i) +
+                        ", " +
+                        Math.floor(255 - 32.5 * j) +
+                        ", 250)";
+                    ctx.fillRect(j * 25, i * 25, 25, 25);
+                }
+            }
+
+            ctx = document.getElementById("test2").getContext("2d");
+            for(let i=0;i<6;i++) {
+                for(let j=0;j<6;j++){
+                    ctx.strokeStyle =
+                        "rgb(255, " +
+                        Math.floor(255 - 42.5 * i) +
+                        ", " +
+                        Math.floor(255 - 42.5 * j) +
+                        ")";
+                    ctx.beginPath();
+                    ctx.arc(12.5 + j * 25, 12.5 + i * 25, 10, 0, Math.PI * 2, true);
+                    ctx.stroke();
+                }
+            }
+
+            ctx = document.getElementById("test3").getContext("2d");
+            // 배경
+            ctx.fillStyle = "#F30";
+            ctx.fillRect(0,0,75,75);
+
+            ctx.fillStyle = "#6C0";
+            ctx.fillRect(75,0,75,75);
+
+            ctx.fillStyle = "#09F";
+            ctx.fillRect(0,75,75,75);
+
+            ctx.fillStyle = "#FD0";
+            ctx.fillRect(75,75,75,75);
+            ctx.fillStyle = "#FFF";
+
+            // 투명값 설정
+            ctx.globalAlpha = 0.2;
+
+            // 반투명 원
+            for (let i=0;i<7;i++) {
+                ctx.beginPath();
+                ctx.arc(75,75,10+10*i,0,Math.PI * 2, true);
+                ctx.fill();
+            }
+
+        }
+    </script>
+</div>
+</body>
+
+</html>
