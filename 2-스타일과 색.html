@@ -32,7 +32,18 @@
         <p>3. globalAlpha </p>
         <canvas id="test3" width="150" height="150"></canvas>
     </div>
-
+    <div>
+        <p>4. lineWidth </p>
+        <canvas id="test4" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>5. lineCap </p>
+        <canvas id="test5" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>6. lineJoin </p>
+        <canvas id="test6" width="150" height="150"></canvas>
+    </div>
     <script>
         function draw() {
             let ctx = document.getElementById("test1").getContext("2d");
@@ -86,6 +97,45 @@
                 ctx.beginPath();
                 ctx.arc(75,75,10+10*i,0,Math.PI * 2, true);
                 ctx.fill();
+            }
+
+            // 선 굵기
+            ctx = document.getElementById("test4").getContext("2d");
+            const color = ["red","orange","yellow", "green", "blue", "navy", "purple"];
+            for (let i = 0; i < 7; i++) {
+                ctx.lineWidth = i * 3;
+                ctx.beginPath();
+                ctx.moveTo(10 + i*20, 0);
+                ctx.lineTo(10 + i*20,150);
+                ctx.strokeStyle = color[i];
+                ctx.stroke();
+            }
+
+            // 선 모양
+            ctx = document.getElementById("test5").getContext("2d");
+            const lineCap = ["butt", "round", "square"];
+            for (let i = 0; i < lineCap.length; i++) {
+                ctx.lineWidth = 10;
+                ctx.beginPath();
+                ctx.lineCap = lineCap[i];
+                ctx.moveTo(30 + i * 45 , 10);
+                ctx.lineTo(30 + i * 45 , 140);
+                ctx.stroke();
+            }
+
+            // 접점 모양
+            ctx = document.getElementById("test6").getContext("2d");
+            const lineJoin = ["round", "bevel", "miter"];
+            ctx.lineWidth = 20;
+            for (let i = 0; i < lineJoin.length; i++) {
+                ctx.lineJoin = lineJoin[i];
+                ctx.beginPath();
+                ctx.moveTo(-5, 5 + i * 40);
+                ctx.lineTo(35, 45 + i * 40);
+                ctx.lineTo(75, 5 + i * 40);
+                ctx.lineTo(115, 45 + i * 40);
+                ctx.lineTo(155, 5 + i * 40);
+                ctx.stroke();
             }
 
         }
