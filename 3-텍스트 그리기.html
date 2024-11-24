@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        canvas {
+            border: 2px solid black;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .container div {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body onload="draw()">
+<div class="container">
+    <div>
+        <p>1. fillText </p>
+        <canvas id="test1" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>2. strokeText </p>
+        <canvas id="test2" width="150" height="150"></canvas>
+    </div>
+    <div>
+        <p>3. textBaseline </p>
+        <canvas id="test3" width="150" height="150"></canvas>
+    </div>
+    <script>
+        function draw() {
+
+            // Test 1 ; fillText
+            let ctx = document.getElementById("test1").getContext("2d");
+            ctx.font = "20px NotoSansKR";
+            ctx.fillText("fillText 텍스트", 5, 70);
+            // ctx.fillText("텍스트", x, y);
+
+            // Test 2 ; strokeText
+            ctx = document.getElementById("test2").getContext("2d");
+            ctx.font = "20px NotoSansKR";
+            ctx.strokeText("strokeText 텍스트", 5, 70);
+
+            // Test 3 ; textBaseline
+            ctx = document.getElementById("test3").getContext("2d");
+            ctx.font = "15px NotoSansKR";
+            ctx.textBaseline = "hanging" // 베이스라인 정렬 설정.
+            // top, hanging, middle, alphabetic, ideographic, bottom. 기본 값은 alphabetic 입니다
+            ctx.fillText("textBaseline=hanging", 5, 10);
+
+        }
+    </script>
+</div>
+</body>
+
+</html>
